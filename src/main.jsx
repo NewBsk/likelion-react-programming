@@ -1,6 +1,6 @@
 // import { createRoot } from '../node_modules/react-dom/client';
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./styles/global.css";
 
@@ -10,9 +10,10 @@ import "./styles/global.css";
 
 // App 함수 컴포넌트를 작성합니다.
 
-createRoot(document.getElementById("root")).render(
+// ReactDOMRoot { render, unmount }
+ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <App /> {/* Virtual DOM (React Element Tree : React Created) */}
   </StrictMode>
 );
 // createRoot
