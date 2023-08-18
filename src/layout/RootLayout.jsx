@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import HeaderBar from "./HeaderBar";
+import { Outlet } from "react-router-dom";
 import FooterBar from "./FooterBar";
+import HeaderBar from "./HeaderBar";
 
-function RootLayout(props) {
+function RootLayout() {
   // React API
   // return React.createElement(
   //   type,
@@ -13,11 +14,15 @@ function RootLayout(props) {
 
   // JSX
   // children = []
-  return [
-    <HeaderBar key="header-bar" />,
-    <main key="main">{props.children}</main>,
-    <FooterBar key="footer-bar" />,
-  ];
+  return (
+    <>
+      <HeaderBar />
+      <main className="p-5">
+        <Outlet />
+      </main>
+      <FooterBar />
+    </>
+  );
 }
 
 export default RootLayout;
