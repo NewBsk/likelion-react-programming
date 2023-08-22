@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductEdit from "./pages/ProductEdit";
 import Contact from "./pages/Contact";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 // 구버전 처럼 사용할 사용자를 위한 최신 방법
 // 배열 → JSX
@@ -16,6 +18,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
+      <Route path="signin" element={<SignIn />} />
+      <Route path="signup" element={<SignUp />} />
       <Route path="products" element={<Products />} />
       <Route path="product/edit/:productId" element={<ProductEdit />} />
       <Route path="contact" element={<Contact />} />
