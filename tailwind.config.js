@@ -2,7 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.jsx"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        suit: ["SUIT Variable"],
+      },
+      backgroundImage: {
+        hero: 'url("/src/assets/hero.jpg")',
+      },
+    },
   },
   plugins: [],
 };
