@@ -1,4 +1,5 @@
 import styles from "./Switcher.module.css";
+import { bool, string, oneOf } from "prop-types";
 
 // 컴포넌트 함수 외부의 것을 변경해서는 안된다.
 
@@ -76,6 +77,12 @@ function Switcher({
   );
 }
 
-<Switcher />;
+Switcher.propTypes = {
+  on: bool,
+  onText: string,
+  offText: string,
+  label: string,
+  size: oneOf(["sm", "md", "lg"]),
+};
 
 export default Switcher;

@@ -16,25 +16,18 @@ function SignIn() {
 
     const { email, password } = formState;
 
-    // PocketBase SDK 인증(로그인) 요청
-    const authData = await pb
-      .collection("users")
-      .authWithPassword(email, password);
-
-    console.log(authData);
+    await pb.collection("users").authWithPassword(email, password);
 
     navigate("/");
   };
 
-  const handleInput = (e) => {
+  const handleInput = debounce((e) => {
     const { name, value } = e.target;
     setFormState({
       ...formState,
       [name]: value,
     });
-  };
-
-  const handleDebounceInput = debounce(handleInput, 500);
+  }, 400);
 
   return (
     <div>
@@ -51,7 +44,7 @@ function SignIn() {
             name="email"
             id="email"
             defaultValue={formState.email}
-            onChange={handleDebounceInput}
+            onChange={handleInput}
             className="border border-slate-300 ml-2"
           />
         </div>
@@ -62,7 +55,7 @@ function SignIn() {
             name="password"
             id="password"
             defaultValue={formState.password}
-            onChange={handleDebounceInput}
+            onChange={handleInput}
             className="border border-slate-300 ml-2"
           />
         </div>
@@ -75,6 +68,26 @@ function SignIn() {
       </form>
 
       <Link to="/signup">회원가입</Link>
+      <button
+        type="button"
+        className="ml-4"
+        onClick={async () => {
+          if (confirm("뭐가 맘에 안드시죠? 정말 탈퇴할 생각인가요?")) {
+            if (pb.authStore.model) {
+              try {
+                await pb.collection("users").delete(pb.authStore.model.id);
+                console.log("탈퇴 성공");
+              } catch (error) {
+                console.error(error);
+              }
+            } else {
+              console.log("현재 로그인 된 사용자가 없어요.");
+            }
+          }
+        }}
+      >
+        탈퇴
+      </button>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
+import { bool } from "prop-types";
 import FooterBar from "./FooterBar";
 import HeaderBar from "./HeaderBar";
 
@@ -34,6 +35,21 @@ function RootLayout({ displaySideMenu = false }) {
               <li>
                 <Link to="/learn/04/02">Context 분리 관리</Link>
               </li>
+              <li>
+                <Link to="/learn/05">값을 기억하기 위한 Refs</Link>
+              </li>
+              <li>
+                <Link to="/learn/06">DOM 요소를 참조하는 Refs</Link>
+              </li>
+              <li>
+                <Link to="/learn/07/01">GSAP 애니메이션</Link>
+              </li>
+              <li>
+                <Link to="/learn/07/02">GSAP 컨텍스트</Link>
+              </li>
+              <li>
+                <Link to="/learn/08">Framer Motion 애니메이션</Link>
+              </li>
             </ul>
           </nav>
         )}
@@ -45,5 +61,9 @@ function RootLayout({ displaySideMenu = false }) {
     </>
   );
 }
+
+RootLayout.propTypes = {
+  displaySideMenu: bool,
+};
 
 export default RootLayout;

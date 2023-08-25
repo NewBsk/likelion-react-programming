@@ -1,3 +1,5 @@
+import { oneOf } from "prop-types";
+
 function GoToButton({
   direction /* 'down' | 'up' */,
   label /* string */,
@@ -6,12 +8,12 @@ function GoToButton({
   ...restProps
 }) {
   // 문 또는 식
-  //     let className = "";
-  //   if (direction === "down") {
-  //     className = "scrollDown";
-  //   } else {
-  //     className = "scrollUp";
-  //   }
+  // let className = '';
+  // if (direction === 'down') {
+  //   className = 'scrollDown';
+  // } else {
+  //   className = 'scrollUp';
+  // }
 
   return (
     <button
@@ -42,5 +44,9 @@ function GoToButton({
     </button>
   );
 }
+
+GoToButton.propTypes = {
+  direction: oneOf(["down", "up"]),
+};
 
 export default GoToButton;
