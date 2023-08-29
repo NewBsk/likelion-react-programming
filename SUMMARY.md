@@ -1,3 +1,49 @@
+###### [학습 주제](./PLAN.md) 보기
+
+# 8. 29
+
+- Zustand 라이브러리는 가장 스타를 많이 받은 상태 관리 도구이다.
+- Immer 라이브러리를 함께 사용하면 상태 관리가 편해진다. (중첩된 상태일 수록 빛)
+- 미들웨어(persist, immer, devtools)를 사용한 유틸리티히 함수를 사용하면 스토어 생성이 편하다.
+- Ramda 라이브러리의 pipe 함수를 사용하면 미들웨어 관리가 편하다.
+
+# 8. 28
+
+- 컴포넌트를 추출해 관리하는 것이 코드 유지보수에 좋다.
+- 스타일 모듈 또한 별도 분리해 관리한다면 컴포넌트는 마크업과 로직만 담당하게 된다.
+- useState() 훅에 함수를 설정하면 지연된 초기화 후 초기값을 설정할 수 있다.
+- 로그인 상태에서 페이지를 새로고침할 때 인증 상태 확인에 시간이 소요되므로 확인 후, 처리해야 한다.
+- PocketBase 데이터베이스는 관계 확장을 지원한다.
+- Zustand 라이브러리를 사용하면 앱 상태 관리가 수월해진다.
+  - 공급자(Provider) 제공이 없다.
+  - Redux나 Context 보다 예열 코드가 거의 없다.
+
+# 8. 25
+
+- 타입 검사 필요할까? (권장)
+  - JavaScript를 사용해 React 앱을 개발한다면? prop-types 패키지 사용을 권장한다. (props 검사만 가능)
+  - TypeScript를 사용해 React 앱을 개발한다면? 강력한 타입 검사 시스템을 사용해 코드 품질을 높일 수 있다.
+- 로컬 스토리지를 사용해 인증 상태를 유지(persist)할 수 있다.
+- 인증 상태에서만 접속 가능한 루트(route)를 보호(protect)해야 한다.
+- PocketBase 데이터베이스에 파일을 업로드 하려면 JSON이 아니라, FormData를 사용해야 한다.
+- 클라이언트(브라우저) 환경에서 업로드할 이미지를 표시할 경우 `URL.createObjectURL(file)`을 사용한다.
+- useMemo() 훅은 JavaScript의 모든 데이터 유형을 기억(memoization)한다.
+- useCallback() 훅은 JavaScript 함수 유형만 기억한다.
+- useMemo() 훅을 사용해 함수 유형 값을 기억할 수도 있지만, useCallback() 훅을 사용하는 것이 문장 구문이 간결하다. ([답변 참고](https://www.notion.so/useMemo-VS-useCallback-e546342310fc4ce492d22d272ec343d1?pvs=4#5f497e3b1dca4a67b732ad3139f5618c))
+
+# 8. 24
+
+1. Refs를 활용해 값을 참조해 기억하거나, DOM 요소를 참조할 수 있습니다.
+1. [GSAP](https://greensock.com/gsap/) 애니메이션 라이브러리는 명령형 방식으로 작성해야 합니다. (`useRef` + `useLayoutEffect`(with cleanup))
+1. React 18+부터 지원하는 동시성 렌더링 모드 영향으로 GSAP 컨텍스트([`gsap.context()`](<https://greensock.com/docs/v3/GSAP/gsap.context()>))를 사용해야 스크린 티어링(screen tearing) 현상을 해결할 수 있습니다.
+1. [Framer Motion](https://framer.com/motion)은 React 전용 애니메이션 라이브러리로 선언형 프로그래밍 방식으로 작성합니다.
+1. 고유한 `key` 속성(prop) 설정은 컴포넌트 (또는 애니메이션) 초기화에 사용될 수 있습니다.
+1. PocketBase AuthStore를 사용해 로그인 상황을 체크하거나, 로그아웃 등 기능을 사용할 수 있습니다.
+1. React Context API를 사용해 인증 상황을 앱에 공급할 수 있습니다.
+1. `useAuth` 커스텀 훅을 사용하면 앱 어디서나 인증 상황을 주입받을 수 있습니다.
+1. 루트 보호(Protected Route) 컴포넌트는 인증된 사용자만 접근 가능하도록 처리합니다.
+1. [react-hot-toast](https://react-hot-toast.com/docs/toast) 라이브러리를 사용해 손쉽게 사용자에게 공지(Notification)할 수 있습니다.
+
 # 8. 23
 
 1. 리액트는 기본적으로 단방향 데이터 흐름에 따라 작동합니다. (Top Down Approach)

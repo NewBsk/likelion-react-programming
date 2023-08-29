@@ -5,6 +5,7 @@
 // [only function] React.useRef
 
 import { useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 
 function RefExampleMemoValues() {
   // 상태
@@ -26,6 +27,9 @@ function RefExampleMemoValues() {
 
   return (
     <>
+      <Helmet>
+        <title>React Refs. memoization value - Learn</title>
+      </Helmet>
       <h2>값을 기억하기 위한 Refs</h2>
 
       <p>
@@ -66,7 +70,7 @@ function RefExampleMemoValues() {
       </button>
 
       <div>
-        <h3>참조 현재 값: stepRef.currnet</h3>
+        <h3>참조 현재 값: stepRef.current</h3>
         <output>{stepRef.current}</output>
         <h3>지역 변수: num</h3>
         <output>{num}</output>

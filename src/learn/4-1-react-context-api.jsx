@@ -1,5 +1,7 @@
 import debounce from "@/utils/debounce";
 import { useState, createContext, useContext, useReducer } from "react";
+import { Helmet } from "react-helmet-async";
+import { string, func, shape } from "prop-types";
 
 /* Context ------------------------------------------------------------------ */
 
@@ -22,7 +24,7 @@ import { useState, createContext, useContext, useReducer } from "react";
 /* -------------------------------------------------------------------------- */
 
 // 1. Context 생성
-// Theme 상태/업데이트 함수(dispach) 공급
+// Theme 상태/업데이트 함수(dispatch) 공급
 const ThemeContext = createContext();
 
 /* -------------------------------------------------------------------------- */
@@ -113,19 +115,24 @@ function ReactContextAPI() {
   const [theme, dispatch] = useReducer(reducer, initialTheme);
 
   return (
-    <ThemeContext.Provider
-      displayName="ThemeContext.Provider"
-      // 1. value={usingStateValue}
-      // 2. value={{ theme, dispatch }}
-      value={{ theme, dispatch }}
-    >
-      <div
-        className="PassingProps p-5 rounded-md"
-        style={{ backgroundColor: color.bg }}
+    <>
+      <Helmet>
+        <title>Sharing State : React Context API - Learn</title>
+      </Helmet>
+      <ThemeContext.Provider
+        displayName="ThemeContext.Provider"
+        // 1. value={usingStateValue}
+        // 2. value={{ theme, dispatch }}
+        value={{ theme, dispatch }}
       >
-        <GrandParent color={color} onChangeColor={handleChangeBgColor} />
-      </div>
-    </ThemeContext.Provider>
+        <div
+          className="PassingProps p-5 rounded-md"
+          style={{ backgroundColor: color.bg }}
+        >
+          <GrandParent color={color} onChangeColor={handleChangeBgColor} />
+        </div>
+      </ThemeContext.Provider>
+    </>
   );
 }
 
@@ -146,6 +153,14 @@ function GrandParent({ color, onChangeColor }) {
   );
 }
 
+GrandParent.propTypes = {
+  color: shape({
+    fg: string,
+    bg: string,
+  }),
+  onChangeColor: func,
+};
+
 function Parent({ color, onChangeColor }) {
   return (
     <div
@@ -159,6 +174,8 @@ function Parent({ color, onChangeColor }) {
   );
 }
 
+Parent.propTypes = GrandParent.propTypes;
+
 function Child({ color, onChangeColor }) {
   return (
     <div
@@ -171,6 +188,8 @@ function Child({ color, onChangeColor }) {
     </div>
   );
 }
+
+Child.propTypes = GrandParent.propTypes;
 
 function GrandChild({ color, onChangeColor }) {
   // 2. 컨텍스트 값을 주입(Injection)
@@ -227,3 +246,5 @@ function GrandChild({ color, onChangeColor }) {
     </div>
   );
 }
+
+GrandChild.propTypes = GrandParent.propTypes;
